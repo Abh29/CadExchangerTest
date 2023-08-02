@@ -18,7 +18,7 @@ namespace ft {
 	public:
 		Helix() noexcept;
 		Helix(double radius, double step);
-		Helix(const Helix& other) noexcept;
+		Helix(const Helix& other) noexcept = default;
 		virtual ~Helix() = default;
 
 

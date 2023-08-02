@@ -22,3 +22,27 @@ Vect3d Circle::getDerivative(double t) const {
 	return { -radius_ * sin,
 			radius_ * cos};
 }
+
+bool Circle::operator<(const Circle &other) const {
+	return radius_ < other.radius_;
+}
+
+bool Circle::operator==(const Circle &other) const {
+	return radius_ == other.radius_;
+}
+
+bool Circle::operator!=(const Circle &other) const {
+	return radius_ != other.radius_;
+}
+
+bool Circle::operator<=(const Circle &other) const {
+	return radius_ <= other.radius_;
+}
+
+bool Circle::operator>(const Circle &other) const {
+	return radius_ > other.radius_;
+}
+
+bool Circle::operator>=(const Circle &other) const {
+	return radius_ >= other.radius_;
+}

@@ -3,11 +3,13 @@ project(CadExchangerTest)
 
 set(CMAKE_CXX_STANDARD 17)
 
-#add_subdirectory(src)
+add_executable(CadExchangerTest main.cpp)
 
-#add_executable(CadExchangerTest main.cpp)
-#target_link_libraries(CadExchangerTest PRIVATE ftCad)
+find_package(OpenMP REQUIRED)
+if(OpenMP_CXX_FOUND)
+    target_link_libraries(CadExchangerTest PUBLIC OpenMP::OpenMP_CXX)
+endif()
 
-add_executable(CadExchangerTest main.cpp src/Vect3d.cpp src/Curve.cpp
-                src/ConicSection.cpp src/GeneralCircle.cpp src/Circle.cpp
-                src/GeneralEllipse.cpp src/Ellipse.cpp src/Helix.cpp)
+
+add_subdirectory(src)
+target_link_libraries(CadExchangerTest PRIVATE ftCad OpenMP::OpenMP_CXX)

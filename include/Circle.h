@@ -24,6 +24,13 @@ namespace ft {
 		void setNormal(const Vect3d& normal) noexcept = delete;
 		void setCenter(const Vect3d& center) const = delete;
 
+		bool operator==(const Circle& other) const;
+		bool operator!=(const Circle& other) const;
+		bool operator<(const Circle& other) const;
+		bool operator<=(const Circle& other) const;
+		bool operator>(const Circle& other) const;
+		bool operator>=(const Circle& other) const;
+
 	};
 
 

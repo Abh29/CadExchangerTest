@@ -8,5 +8,5 @@ add_library(ftCad STATIC Curve.cpp ConicSection.cpp GeneralCircle.cpp
         Helix.cpp Vect3d.cpp)
 
 target_include_directories(ftCad PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_compile_options(ftCad PRIVATE -Werror -Wextra -Wall)
+target_compile_options(ftCad PUBLIC -Werror -Wextra -Wall)
 

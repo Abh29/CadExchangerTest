@@ -1,0 +1,8 @@
+#include "Vect3d.h"
+#include "Curve.h"
+#include "ConicSection.h"
+#include "GeneralCircle.h"
+#include "Circle.h"
+#include "GeneralEllipse.h"
+#include "Ellipse.h"
+#include "Helix.h"
