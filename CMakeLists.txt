@@ -12,4 +12,4 @@ endif()
 
 
 add_subdirectory(src)
-target_link_libraries(CadExchangerTest PRIVATE ftCad OpenMP::OpenMP_CXX)
+target_link_libraries(CadExchangerTest PRIVATE ftCad)
