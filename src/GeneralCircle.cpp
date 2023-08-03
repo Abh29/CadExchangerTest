@@ -20,8 +20,8 @@ double GeneralCircle::getArea() const {return M_PI * radius_ * radius_;}
 double GeneralCircle::getCircumference() const {return 2 * M_PI * radius_;}
 
 Vect3d GeneralCircle::getPoint(double t) const {
-	const double cos = std::abs(std::cos(t)) < 1e-7 ? 0.f : std::cos(t);
-	const double sin = std::abs(std::sin(t)) < 1e-7 ? 0.f : std::sin(t);
+	const double cos = std::abs(std::cos(t)) < FT_EPS ? 0.f : std::cos(t);
+	const double sin = std::abs(std::sin(t)) < FT_EPS ? 0.f : std::sin(t);
 
 	Vect3d V1 = Vect3d::crossProduct(normal_, {0.f, -1.f, 0.f});
 	if (V1.isNull())
@@ -38,8 +38,8 @@ Vect3d GeneralCircle::getPoint(double t) const {
 
 Vect3d GeneralCircle::getDerivative(double t) const {
 
-	const double cos = std::abs(std::cos(t)) < 1e-7 ? 0.f : std::cos(t);
-	const double sin = std::abs(std::sin(t)) < 1e-7 ? 0.f : std::sin(t);
+	const double cos = std::abs(std::cos(t)) < FT_EPS ? 0.f : std::cos(t);
+	const double sin = std::abs(std::sin(t)) < FT_EPS ? 0.f : std::sin(t);
 
 	Vect3d V1 = Vect3d::crossProduct(normal_, {0.f, -1.f, 0.f});
 	if (V1.isNull())

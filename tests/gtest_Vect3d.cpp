@@ -251,6 +251,18 @@ TEST(Vect3dTest, CrossProduct) {
 
 }
 
+TEST(Vect3dTest, Equal_Operator) {
+
+	EXPECT_TRUE(ft::Vect3d(0,0,0) == ft::Vect3d(-0,-0,-0));
+	EXPECT_FALSE(ft::Vect3d(1,2,3) == ft::Vect3d(-1,22,4));
+	EXPECT_TRUE(ft::Vect3d(0,0,0) == ft::Vect3d(1e-10, -1e-10, 1e-10));
+	EXPECT_FALSE(ft::Vect3d(1,2,3) == ft::Vect3d(-1,22,4));
+	EXPECT_FALSE(ft::Vect3d(0,0,0) != ft::Vect3d(-0,-0,-0));
+	EXPECT_TRUE(ft::Vect3d(1,2,3) != ft::Vect3d(-1,22,4));
+	EXPECT_FALSE(ft::Vect3d(0,0,0) != ft::Vect3d(1e-10, -1e-10, 1e-10));
+	EXPECT_TRUE(ft::Vect3d(1,2,3) != ft::Vect3d(-1,22,4));
+}
+
 
 
 

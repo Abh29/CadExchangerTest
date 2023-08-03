@@ -22,7 +22,7 @@ namespace ft {
 	public:
 
 		/*
-		 * Constructs a helix with radius of 1.
+		 * Constructs a helix with radius and step of 1.
 		 */
 		Helix() noexcept;
 

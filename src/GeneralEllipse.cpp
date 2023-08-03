@@ -37,8 +37,8 @@ GeneralEllipse &GeneralEllipse::operator=(const GeneralEllipse &other) noexcept 
 
 Vect3d GeneralEllipse::getPoint(double t) const {
 
-	const double cos = std::abs(std::cos(t)) < 1e-7 ? 0.f : std::cos(t);
-	const double sin = std::abs(std::sin(t)) < 1e-7 ? 0.f : std::sin(t);
+	const double cos = std::abs(std::cos(t)) < FT_EPS ? 0.f : std::cos(t);
+	const double sin = std::abs(std::sin(t)) < FT_EPS ? 0.f : std::sin(t);
 
 	Vect3d V1 = Vect3d::crossProduct(normal_, {0.f, -1.f, 0.f});
 	if (V1.isNull())
@@ -55,8 +55,8 @@ Vect3d GeneralEllipse::getPoint(double t) const {
 
 Vect3d GeneralEllipse::getDerivative(double t) const {
 
-	const double cos = std::abs(std::cos(t)) < 1e-7 ? 0.f : std::cos(t);
-	const double sin = std::abs(std::sin(t)) < 1e-7 ? 0.f : std::sin(t);
+	const double cos = std::abs(std::cos(t)) < FT_EPS ? 0.f : std::cos(t);
+	const double sin = std::abs(std::sin(t)) < FT_EPS ? 0.f : std::sin(t);
 
 	Vect3d V1 = Vect3d::crossProduct(normal_, {0.f, -1.f, 0.f});
 	if (V1.isNull())

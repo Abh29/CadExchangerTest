@@ -9,8 +9,8 @@ Helix::Helix(double radius, double step) : Curve() , radius_(radius), step_(step
 }
 
 Vect3d Helix::getPoint(double t) const {
-	const double cos = std::abs(std::cos(t)) < 1e-7 ? 0.f : std::cos(t);
-	const double sin = std::abs(std::sin(t)) < 1e-7 ? 0.f : std::sin(t);
+	const double cos = std::abs(std::cos(t)) < FT_EPS ? 0.f : std::cos(t);
+	const double sin = std::abs(std::sin(t)) < FT_EPS ? 0.f : std::sin(t);
 	const double pitch = step_ / (2 * M_PI);
 
 	return {radius_ * cos,
@@ -20,8 +20,8 @@ Vect3d Helix::getPoint(double t) const {
 
 Vect3d Helix::getDerivative(double t) const {
 
-	const double cos = std::abs(std::cos(t)) < 1e-7 ? 0.f : std::cos(t);
-	const double sin = std::abs(std::sin(t)) < 1e-7 ? 0.f : std::sin(t);
+	const double cos = std::abs(std::cos(t)) < FT_EPS ? 0.f : std::cos(t);
+	const double sin = std::abs(std::sin(t)) < FT_EPS ? 0.f : std::sin(t);
 	const double pitch = step_ / (2 * M_PI);
 
 	return {-radius_ * sin,
