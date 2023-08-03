@@ -4,6 +4,10 @@
 #include "ConicSection.h"
 
 
+#ifndef FT_EPS
+#define FT_EPS  1E-7
+#endif
+
 namespace ft {
 
 	class ConicSection;

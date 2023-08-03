@@ -2,7 +2,7 @@
 #define FT_HELIX__
 
 #ifndef FT_EPS
-#define FT_EPS 1e-7
+#define FT_EPS  1E-7
 #endif
 
 #include "Curve.h"

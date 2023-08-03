@@ -13,3 +13,5 @@ endif()
 
 add_subdirectory(src)
 target_link_libraries(CadExchangerTest PRIVATE ftCad)
+
+add_subdirectory(tests)

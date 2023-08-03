@@ -4,6 +4,11 @@
 #include "Vect3d.h"
 #include "Curve.h"
 
+#ifndef FT_EPS
+#define FT_EPS  1E-7
+#endif
+
+
 namespace ft {
 
 	class Vect3d;

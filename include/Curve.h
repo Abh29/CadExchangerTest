@@ -3,6 +3,10 @@
 
 #include "Vect3d.h"
 
+#ifndef FT_EPS
+#define FT_EPS  1E-7
+#endif
+
 
 namespace ft {
 

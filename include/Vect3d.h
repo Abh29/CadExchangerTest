@@ -5,9 +5,11 @@
 #include <ostream>
 #include <cmath>
 
+#ifndef FT_EPS
+#define FT_EPS  1E-7
+#endif
 
 namespace ft {
-
 
 	/*
 	 * This class as the name suggests represents a 3D mathematical vector or point
@@ -20,7 +22,7 @@ namespace ft {
 		/*
 		 * Standard Constructor, initializes the vector to (0, 0, 0).
 		 */
-		Vect3d() noexcept;
+		Vect3d() noexcept ;
 
 		/*
 		 * @param xpos: the first component of the vector
@@ -121,13 +123,15 @@ namespace ft {
 
 		/*
 		 * Returns a new normalized vector of from the current one.
+		 * Throw invalid_argument exception if the magnitude is null.
 		 */
-		[[nodiscard]] Vect3d normalized() const noexcept;
+		[[nodiscard]] Vect3d normalized() const;
 
 		/*
 		 * Normalizes the current vector.
+		 * Throws invalid_argument exception if the magnitude is null.
 		 */
-		void normalize() noexcept;
+		void normalize();
 
 		/*
 		 * @param vector: 3D vector
@@ -190,8 +194,9 @@ namespace ft {
 		 *
 		 * Returns the cross Product of two vectors defined as
 		 * v1 x v2 .
+		 * throws std::invalid_argument exception if one vector is null.
 		 */
-		[[nodiscard]] static Vect3d crossProduct(const Vect3d& v1, const Vect3d& v2) noexcept;
+		[[nodiscard]] static Vect3d crossProduct(const Vect3d& v1, const Vect3d& v2);
 
 	private:
 		double v_[3];
@@ -200,7 +205,8 @@ namespace ft {
 }
 
 std::ostream& operator<<(std::ostream& os, const ft::Vect3d& vector);
-
+bool operator==(const ft::Vect3d& lhs, const ft::Vect3d& rhs);
+bool operator!=(const ft::Vect3d& lhs, const ft::Vect3d& rhs);
 
 
 

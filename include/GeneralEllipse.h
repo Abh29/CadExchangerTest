@@ -2,9 +2,8 @@
 #define FT_GENERAL_ELLIPSE__
 
 #ifndef FT_EPS
-#define FT_EPS 1e-7
+#define FT_EPS  1E-7
 #endif
-
 
 #include "ConicSection.h"
 

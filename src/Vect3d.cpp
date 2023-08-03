@@ -2,9 +2,9 @@
 
 using namespace ft;
 
-inline Vect3d::Vect3d() noexcept : v_{0.f, 0.f, 0.f} {}
-inline Vect3d::Vect3d(double xpos, double ypos, double zpos) noexcept : v_{xpos, ypos, zpos} {}
-inline Vect3d::Vect3d(const Vect3d& other) noexcept : v_{other.v_[0], other.v_[1], other.v_[2]} {}
+Vect3d::Vect3d() noexcept : v_{0.f, 0.f, 0.f} {}
+Vect3d::Vect3d(double xpos, double ypos, double zpos) noexcept : v_{xpos, ypos, zpos} {}
+Vect3d::Vect3d(const Vect3d& other) noexcept : v_{other.v_[0], other.v_[1], other.v_[2]} {}
 
 
 Vect3d &Vect3d::operator=(const Vect3d &other) noexcept {
@@ -40,22 +40,24 @@ double Vect3d::operator[](int i) const {
 	return v_[i];
 }
 
-double Vect3d::length() const noexcept {return std::hypot(x(), y(), z());}
+double Vect3d::length() const noexcept {return std::hypot(v_[0], v_[1], v_[2]);}
 double Vect3d::lengthSquared() const noexcept { return v_[0] * v_[0] + v_[1] * v_[1] + v_[2] * v_[2];}
 
-Vect3d Vect3d::normalized() const noexcept {
+Vect3d Vect3d::normalized() const {
 	const double len = length();
-	if (std::abs(len - 1.0f) < 1e-5)
+	if (std::abs(len) < FT_EPS)
+		throw std::invalid_argument("the current vector is null !");
+	if (std::abs(len - 1.0f) < FT_EPS) {
 		return *this;
-	if (std::abs(len) < 1e-5)
-		return {};
-
+	}
 	return {v_[0] / len, v_[1] / len, v_[2] / len };
 
 }
-void Vect3d::normalize() noexcept {
+void Vect3d::normalize(){
 	const double len = length();
-	if (std::abs(len - 1.0f) < 1e-5 || std::abs(len) < 1e-5)
+	if (std::abs(len) < FT_EPS)
+		throw std::invalid_argument("the current vector is null !");
+	if (std::abs(len - 1.0f) < FT_EPS)
 		return;
 
 	v_[0] /= len;
@@ -63,32 +65,32 @@ void Vect3d::normalize() noexcept {
 	v_[2] /= len;
 }
 
- inline Vect3d &Vect3d::operator+=(const Vect3d& vector) noexcept {
+Vect3d &Vect3d::operator+=(const Vect3d& vector) noexcept {
 	v_[0] += vector.x();
 	v_[1] += vector.y();
 	v_[2] += vector.z();
 	return *this;
 }
- inline Vect3d &Vect3d::operator-=(const Vect3d& vector) noexcept {
+Vect3d &Vect3d::operator-=(const Vect3d& vector) noexcept {
 	v_[0] -= vector.x();
 	v_[1] -= vector.y();
 	v_[2] -= vector.z();
 	return *this;
 }
- inline Vect3d &Vect3d::operator*=(double factor) noexcept {
+Vect3d &Vect3d::operator*=(double factor) noexcept {
 	v_[0] *= factor;
 	v_[1] *= factor;
 	v_[2] *= factor;
 	return *this;
 }
- inline Vect3d &Vect3d::operator*=(const Vect3d& vector) noexcept {
+Vect3d &Vect3d::operator*=(const Vect3d& vector) noexcept {
 	v_[0] *= vector.v_[0];
 	v_[1] *= vector.v_[1];
 	v_[2] *= vector.v_[2];
 	return *this;
 }
- inline Vect3d &Vect3d::operator/=(double divisor) {
-	if (std::abs(divisor) < 1e-5)
+Vect3d &Vect3d::operator/=(double divisor) {
+	if (std::abs(divisor) < FT_EPS)
 		throw std::invalid_argument("Can not divide by 0!");
 	v_[0] /= divisor;
 	v_[1] /= divisor;
@@ -96,9 +98,9 @@ void Vect3d::normalize() noexcept {
 	return *this;
 }
  Vect3d &Vect3d::operator/=(const Vect3d& vector) {
-	if (std::abs(vector.x()) < 1e-5 ||
-		std::abs(vector.y()) < 1e-5 ||
-		std::abs(vector.z()) < 1e-5 )
+	if (std::abs(vector.x()) < FT_EPS ||
+		std::abs(vector.y()) < FT_EPS ||
+		std::abs(vector.z()) < FT_EPS )
 		throw std::invalid_argument("Can not divide by 0!");
 	v_[0] /= vector.x();
 	v_[1] /= vector.y();
@@ -110,7 +112,9 @@ double Vect3d::dotProduct(const Vect3d& v1, const Vect3d& v2) noexcept {
 	return v1.v_[0] * v2.v_[0] + v1.v_[1] * v2.v_[1] + v1.v_[2] * v2.v_[2];
 }
 
-Vect3d Vect3d::crossProduct(const Vect3d& v1, const Vect3d& v2) noexcept {
+Vect3d Vect3d::crossProduct(const Vect3d& v1, const Vect3d& v2) {
+	if (std::abs(v1.length()) < FT_EPS || std::abs(v2.length()) < FT_EPS)
+		throw std::invalid_argument("crossProduct is not defined for null vector!");
 	return {v1.v_[1] * v2.v_[2] - v1.v_[2] * v2.v_[1],
 			v1.v_[2] * v2.v_[0] - v1.v_[0] * v2.v_[2],
 			v1.v_[0] * v2.v_[1] - v1.v_[1] * v2.v_[0]};
@@ -121,6 +125,15 @@ std::ostream& operator<<(std::ostream& os, const Vect3d& vector) {
 	os << "( " << vector.x() << ", " << vector.y() << ", " << vector.z() << " )";
 	return os;
 }
+
+bool operator==(const ft::Vect3d& lhs, const ft::Vect3d& rhs) {
+	return std::hypot(lhs.x() - rhs.x(), lhs.y() - rhs.y(), lhs.z() - rhs.z()) < FT_EPS;
+}
+
+bool operator!=(const ft::Vect3d& lhs, const ft::Vect3d& rhs) {
+	return !(lhs == rhs);
+}
+
 
  bool Vect3d::IsNull(const Vect3d &vec) noexcept {
 	return vec.isNull();
