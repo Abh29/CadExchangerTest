@@ -52,4 +52,4 @@ Curve definitions:
     respectively.
 - Helix.h contains the class Helix that represents a simple helix centered at the origin with the normal z  
   with a given radius and a given step = 2 * PI * pitch. for a general helix it is better to calculate the  
-  coordinates of a point on a simple helix and they apply the required geometric transformations.
+  coordinates of a point on a simple helix, and then apply the required geometric transformations.
