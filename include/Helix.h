@@ -70,9 +70,29 @@ namespace ft {
 		double getStep() const;
 
 
+		/*
+		 * @param t: then angle of rotation starting from x axis.
+		 *
+		 * Returns the point on the helix relating the a rotation of
+		 * angle t in radian along the helix.
+		 */
 		[[nodiscard]] Vect3d getPoint(double t) const override;
+
+		/*
+		 * @param t: then angle of rotation starting from x axis.
+		 *
+		 * Returns the derivative point on the helix relating the a
+		 * rotation of angle t in radian along the helix.
+		 */
 		[[nodiscard]] Vect3d getDerivative(double t) const override;
 
+
+		/*
+		 * This method is hidden as the definition of a simple helix is
+		 * centered in the center (0,0,0)
+		 * Changing this parameter center_ doesnt affect getPoint nor
+		 * getDerivative as they consider the center to be fixed.
+		 */
 		void setCenter(const Vect3d& center) = delete;
 
 	protected:
