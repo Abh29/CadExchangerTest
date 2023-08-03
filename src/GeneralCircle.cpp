@@ -4,11 +4,18 @@ using namespace ft;
 
 GeneralCircle::GeneralCircle() noexcept : ConicSection(), radius_(1.f) {}
 GeneralCircle::GeneralCircle(const Vect3d& normal, const Vect3d& center, double radius) :
-	ConicSection(normal, center), radius_(radius) {}
+	ConicSection(normal, center), radius_(radius) {
+	if (radius <= 0)
+		throw std::invalid_argument("The radius must be positive!");
+}
 
 
 double GeneralCircle::getRadius() const {return radius_;}
-void GeneralCircle::setRadius(double radius) {radius_ = radius;}
+void GeneralCircle::setRadius(double radius) {
+	if (radius <= 0)
+		throw std::invalid_argument("The radius must be positive!");
+	radius_ = radius;
+}
 double GeneralCircle::getArea() const {return M_PI * radius_ * radius_;}
 double GeneralCircle::getCircumference() const {return 2 * M_PI * radius_;}
 
@@ -17,6 +24,8 @@ Vect3d GeneralCircle::getPoint(double t) const {
 	const double sin = std::abs(std::sin(t)) < 1e-7 ? 0.f : std::sin(t);
 
 	Vect3d V1 = Vect3d::crossProduct(normal_, {0.f, -1.f, 0.f});
+	if (V1.isNull())
+		V1 = Vect3d::crossProduct(normal_, {-1.f, 0.f, 0.f});
 	Vect3d V2 = Vect3d::crossProduct(normal_, V1);
 
 	V1.normalize();
@@ -33,6 +42,8 @@ Vect3d GeneralCircle::getDerivative(double t) const {
 	const double sin = std::abs(std::sin(t)) < 1e-7 ? 0.f : std::sin(t);
 
 	Vect3d V1 = Vect3d::crossProduct(normal_, {0.f, -1.f, 0.f});
+	if (V1.isNull())
+		V1 = Vect3d::crossProduct(normal_, {-1.f, 0.f, 0.f});
 	Vect3d V2 = Vect3d::crossProduct(normal_, V1);
 
 	V1.normalize();

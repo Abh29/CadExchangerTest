@@ -50,8 +50,10 @@ namespace ft {
 		double getRadius() const;
 
 		/*
-		 * @param radius: real number, the radius of the sphere
+		 * @param radius: positive number, the radius of the sphere
+		 *
 		 * Sets the parameter radius_ to radius.
+		 * throw invalid_argument exception if radius is negative or null.
 		 */
 		void setRadius(double radius);
 
@@ -71,7 +73,8 @@ namespace ft {
 		 * @param t: real number representing the an angle
 		 *
 		 * Returns the artesian coordinates of the point on circle with
-		 * the angle t in polar coordinates.
+		 * the angle t in polar coordinates with respect to two arbitrary
+		 * perpendicular unit vectors of the plane.
 		 */
 		virtual Vect3d getPoint(double t) const override;
 
@@ -79,7 +82,8 @@ namespace ft {
 		 * @param t: real number representing the an angle
 		 *
 		 * Returns derivatives of the components of the point on the circle
-		 * with the angle t in polar coordinates.
+		 * with the angle t in polar coordinates wih respect to two arbitrary
+		 * perpendicular unit vectors of the plane.
 		 */
 		virtual Vect3d getDerivative(double t) const override;
 
