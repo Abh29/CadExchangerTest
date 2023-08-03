@@ -89,7 +89,7 @@ void Vect3d::normalize() noexcept {
 }
  inline Vect3d &Vect3d::operator/=(double divisor) {
 	if (std::abs(divisor) < 1e-5)
-		throw std::out_of_range("Can not divide by 0!");
+		throw std::invalid_argument("Can not divide by 0!");
 	v_[0] /= divisor;
 	v_[1] /= divisor;
 	v_[2] /= divisor;
@@ -99,7 +99,7 @@ void Vect3d::normalize() noexcept {
 	if (std::abs(vector.x()) < 1e-5 ||
 		std::abs(vector.y()) < 1e-5 ||
 		std::abs(vector.z()) < 1e-5 )
-		throw std::out_of_range("Can not divide by 0!");
+		throw std::invalid_argument("Can not divide by 0!");
 	v_[0] /= vector.x();
 	v_[1] /= vector.y();
 	v_[2] /= vector.z();
